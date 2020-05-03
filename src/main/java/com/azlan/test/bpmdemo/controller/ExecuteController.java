@@ -2,6 +2,7 @@ package com.azlan.test.bpmdemo.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.RuntimeService;
+import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +19,10 @@ public class ExecuteController {
         this.runtimeService = runtimeService;
     }
 
-    @PostMapping(path = "/execute")
+    @PostMapping(path = "/weathercheck")
     public HttpStatus executeProcess(){
-        runtimeService.startProcessInstanceByKey("checkWeather");
+        ProcessInstance instance = runtimeService.startProcessInstanceByKey("checkWeather");
+        log.debug("Process started using : " + instance.getProcessDefinitionId());
         return HttpStatus.OK;
     }
 
