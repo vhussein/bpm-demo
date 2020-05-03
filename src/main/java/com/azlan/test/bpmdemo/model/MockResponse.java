@@ -1,0 +1,15 @@
+package com.azlan.test.bpmdemo.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class MockResponse {
+
+    private boolean response;
+}

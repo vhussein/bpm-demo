@@ -3,7 +3,6 @@ package com.azlan.test.bpmdemo.config;
 import org.camunda.bpm.engine.spring.ProcessEngineFactoryBean;
 import org.camunda.bpm.engine.spring.SpringProcessEngineConfiguration;
 import org.camunda.bpm.engine.spring.SpringProcessEngineServicesConfiguration;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,11 +26,14 @@ public class CamundaProcessEngineConfiguration {
     // ---------------------------
 
     // configure data source via application.properties
-    @Autowired
-    private DataSource dataSource;
+    private final DataSource dataSource;
 
-    @Autowired
-    private ResourcePatternResolver resourceLoader;
+    private final ResourcePatternResolver resourceLoader;
+
+    public CamundaProcessEngineConfiguration(DataSource dataSource, ResourcePatternResolver resourceLoader) {
+        this.dataSource = dataSource;
+        this.resourceLoader = resourceLoader;
+    }
 
     @Bean
     public SpringProcessEngineConfiguration processEngineConfiguration() throws IOException {
